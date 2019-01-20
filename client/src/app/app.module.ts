@@ -7,11 +7,31 @@ import {CarService} from "./car.service";
 import {CarListComponent} from './car-list/car-list.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule} from '@angular/material';
+import { CarEditComponent } from './car-edit/car-edit.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/car-list', pathMatch: 'full'},
+  {
+    path: 'car-list',
+    component: CarListComponent
+  },
+  {
+    path: 'car-add',
+    component: CarEditComponent
+  },
+  {
+    path: 'car-add/:id',
+    component: CarEditComponent
+  }
+]
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarListComponent
+    CarListComponent,
+    CarEditComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +41,9 @@ import {MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolba
     MatCardModule,
     MatInputModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [CarService],
   bootstrap: [AppComponent]

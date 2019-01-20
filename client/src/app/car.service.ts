@@ -7,6 +7,9 @@ import {Observable} from "rxjs/index";
 })
 export class CarService {
 
+  public API = '//localhost:8080';
+  public CAR_API = this.API + '/cars';
+
   constructor(private http: HttpClient) {
   }
 
@@ -14,4 +17,25 @@ export class CarService {
     return this.http.get('//localhost:8080/cool-cars');
   }
 
+  get(id: string) {
+    return this.http.get(this.CAR_API + '/' + id);
+  }
+
+  save(car: any): Observable<any> {
+
+    let result: Observable;
+    if (car['href']) {
+      result = this.http.get(car.href), car;
+    } else {
+      result = this.http.post(this.CAR_API, car);
+    }
+    return result;
+  }
+
+  remove(href: string) {
+    return this.http.delete(href);
+  }
+
 }
+
+
