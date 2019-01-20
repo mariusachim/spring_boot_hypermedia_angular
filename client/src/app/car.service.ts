@@ -23,7 +23,7 @@ export class CarService {
 
   save(car: any): Observable<any> {
 
-    let result: Observable;
+    let result: Observable<any>;
     if (car['href']) {
       result = this.http.get(car.href), car;
     } else {

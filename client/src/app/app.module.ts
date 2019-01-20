@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     component: CarEditComponent
   },
   {
-    path: 'car-add/:id',
+    path: 'car-edit/:id',
     component: CarEditComponent
   }
 ]
